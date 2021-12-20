@@ -1,5 +1,6 @@
 package com.example.demojpa.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,12 +22,17 @@ public class Users {
   @Id
   private Long idx;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String username;
 
   @Column(nullable = false)
   private String password;
 
   private String nickname;
+
+  @JsonIgnore
+  public void updateNickname(String nickname) {
+    this.nickname = nickname;
+  }
 
 }
